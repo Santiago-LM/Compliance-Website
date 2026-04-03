@@ -1,0 +1,30 @@
+worker_processes 1;
+
+events { worker_connections 1024; }
+
+http {
+    server {
+        listen 8080;
+
+        # Serve root files like index.html
+        location / {
+            root <%= ENV["APP_DIR"] %>;
+            index index.html;
+        }
+
+        # Serve static JS files
+        location /js/ {
+            root <%= ENV["APP_DIR"] %>;
+        }
+
+        # Serve static CSS files
+        location /css/ {
+            root <%= ENV["APP_DIR"] %>;
+        }
+
+        # Serve images if you have any
+        location /images/ {
+            root <%= ENV["APP_DIR"] %>;
+        }
+    }
+}
